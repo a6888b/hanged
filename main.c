@@ -6,6 +6,7 @@
 #define MAX_COUNT_CHAR 256
 
 char read_lines();
+int random_number(int max);
 
 /*
     PENDU
@@ -34,9 +35,16 @@ int main(void)
 
     return 0;
 }
+int random_number(int max)
+{
+    srand(time(NULL));
+    return rand() % max;
+}
 
 char read_lines()
 {
+    char ch[MAX_COUNT_CHAR];
+
     FILE *fp = fopen("test.txt", "r");
 
     if (fp == NULL)
@@ -44,15 +52,17 @@ char read_lines()
         printf("Un probleme est survenue a l'ouverture fichier !");
         exit(1);
     }
-    char all_ch[MAX_COUNT_CHAR];
-    char ch[MAX_COUNT_CHAR];
+    int number_rand = random_number(10);
 
     for (int i = 0; fgets(ch, MAX_COUNT_CHAR, fp) != NULL; ++i)
     {
-        all_ch[i] = ch;
+        if (i == random_number)
+        {
+            break;
+        }
+    
     }
 
     fclose(fp);
-
-    return all_ch;
+    return ch;
 }
