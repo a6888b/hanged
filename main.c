@@ -5,7 +5,7 @@
 
 #define MAX_COUNT_CHAR 256
 
-char read_lines();
+char read_lines(char *ch);
 int random_number(int max);
 
 /*
@@ -24,14 +24,8 @@ int main(void)
 {
     int stop = 0;
 
-    char ch[MAX_COUNT_CHAR] = read_lines();
-
-    for (int i = 0; i < 50; ++i)
-    {
-        printf("Mot: %s \n", ch[i]);
-        int lenght = strlen(ch[i]);
-        printf("Longuer du mot: %d \n", lenght);
-    }
+    char ch[MAX_COUNT_CHAR]; 
+    read_lines(ch);
 
     return 0;
 }
@@ -41,10 +35,8 @@ int random_number(int max)
     return rand() % max;
 }
 
-char read_lines()
+char read_lines(char *ch)
 {
-    char ch[MAX_COUNT_CHAR];
-
     FILE *fp = fopen("test.txt", "r");
 
     if (fp == NULL)
@@ -56,7 +48,7 @@ char read_lines()
 
     for (int i = 0; fgets(ch, MAX_COUNT_CHAR, fp) != NULL; ++i)
     {
-        if (i == random_number)
+        if (i == number_rand)
         {
             break;
         }
@@ -64,5 +56,4 @@ char read_lines()
     }
 
     fclose(fp);
-    return ch;
 }
