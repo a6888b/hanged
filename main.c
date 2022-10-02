@@ -7,6 +7,7 @@
 
 char read_lines(char *ch);
 int random_number(int max);
+void show_word(char *ch, int lenght, char char_enter);
 
 /*
     PENDU
@@ -22,13 +23,43 @@ int random_number(int max);
 
 int main(void)
 {
-    int stop = 0;
 
-    char ch[MAX_COUNT_CHAR]; 
+    char ch[MAX_COUNT_CHAR];       // tableau de caractere qui sera piocher dans le fichier
+    char ch_enter[MAX_COUNT_CHAR]; // charactere entrez par l'utilisateur
     read_lines(ch);
+    puts(ch);
+    // ajouter une fonction qui supprime le retour chariot
+
+    int lenght_word = strlen(ch);
+    int stop = 0;
+    while (!stop)
+    {
+        if (strcmp(ch, ch_enter))
+        {
+            stop = 1;
+        }
+        else
+        {
+            puts(ch); 
+            fgets(ch_enter, 10, stdin); // FIXME pk il veut pas input
+            show_word(ch, lenght_word, ch_enter[0]);
+        }
+    }
 
     return 0;
 }
+
+void show_word(char *ch, int lenght, char char_enter)
+{
+    for (int i = 0; i < lenght; ++i)
+    {
+        // printf("%d", strchr(ch, char_enter));
+        if (strchr(ch, char_enter))
+        {
+        }
+    }
+}
+
 int random_number(int max)
 {
     srand(time(NULL));
@@ -52,7 +83,6 @@ char read_lines(char *ch)
         {
             break;
         }
-    
     }
 
     fclose(fp);
